@@ -26,7 +26,7 @@ struct SynodicPeriod: View {
     @Binding var time: CGFloat
     @State private var timer = Timer.publish(every: 1.0 / 60.0, on: .main, in: .common)
     @State private var token: Cancellable? = nil
-    @State private var orbitalRadiusVenus: CGFloat = 0.71
+    @State private var orbitalRadiusVenus: CGFloat = 0.725
 
     var body: some View {
         VStack {
@@ -40,7 +40,7 @@ struct SynodicPeriod: View {
                         token = nil
                     }
                 }
-                Text("Year: \(time / (2 * .pi), specifier: "%.2f")")
+                Stepper("Year: \(time / (2 * .pi), specifier: "%.3f")", value: $time, step: 0.004 * (2 * .pi))
                     .monospacedDigit()
             }.padding()
             GeometryReader { gr in
@@ -50,12 +50,14 @@ struct SynodicPeriod: View {
                     earth()
                     Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: (position(t: time, a: orbitalRadiusEarth))).stroke()
                     Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: (position(t: time, a: orbitalRadiusVenus))).stroke()
-                }.transformEffect(CGAffineTransform(translationX: 0.5 * gr.size.width, y: 0.5 * gr.size.height))
-            }.onReceive(timer) { x in
-                time += 0.02
+                }
+                .transformEffect(CGAffineTransform(translationX: 0.5 * gr.size.width, y: 0.5 * gr.size.height))
+            }
+            .onReceive(timer) { x in
+                time += 0.004 * (2 * .pi)
             }
             HStack {
-                Text("Inner planet semi-major axis: \(orbitalRadiusVenus, specifier: "%.2f")")
+                Text("Inner planet semi-major axis: \(orbitalRadiusVenus, specifier: "%.3f")")
                 Slider(value: $orbitalRadiusVenus)
             }
             .monospacedDigit()
