@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var selection: String?
+    @State private var time: CGFloat = 0.0
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var views: [(String, AnyView)] {
+        [
+            ("Welcome", AnyView(Text("Welcome"))),
+            ("Circle", AnyView(Circle())),
+            ("Particles", AnyView(ParticlesView())),
+            ("SynodicPeriod", AnyView(SynodicPeriod(time: $time))),
+        ]
+    }
+    var body: some View {
+        HSplitView {
+            NavigationStack {
+                List(views, id: \.0, selection: $selection) { (name, _) in
+                    Text(name)
+                }
+            }.frame(minWidth: 100, maxWidth: 200)
+            views
+                .first(where: { $0.0 == (selection ?? "Welcome") })!.1
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }

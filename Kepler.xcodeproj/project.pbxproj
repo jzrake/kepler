@@ -11,6 +11,10 @@
 		C6428B6C297B847F009DB88D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6428B6B297B847F009DB88D /* ContentView.swift */; };
 		C6428B6E297B8481009DB88D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6428B6D297B8481009DB88D /* Assets.xcassets */; };
 		C6428B71297B8481009DB88D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6428B70297B8481009DB88D /* Preview Assets.xcassets */; };
+		C6B65537297D823100928B59 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C6B65533297D823100928B59 /* Shader.metal */; };
+		C6B65538297D823100928B59 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B65534297D823100928B59 /* MetalView.swift */; };
+		C6B65539297D823100928B59 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B65535297D823100928B59 /* ParticlesView.swift */; };
+		C6B6553C297D83F700928B59 /* SynodicPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6553B297D83F700928B59 /* SynodicPeriod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		C6428B6D297B8481009DB88D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6428B70297B8481009DB88D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C6428B72297B8481009DB88D /* Kepler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kepler.entitlements; sourceTree = "<group>"; };
+		C6B65533297D823100928B59 /* Shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		C6B65534297D823100928B59 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		C6B65535297D823100928B59 /* ParticlesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
+		C6B6553B297D83F700928B59 /* SynodicPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynodicPeriod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,9 @@
 		C6428B68297B847F009DB88D /* Kepler */ = {
 			isa = PBXGroup;
 			children = (
+				C6B65532297D81E700928B59 /* Particles */,
 				C6428B69297B847F009DB88D /* KeplerApp.swift */,
+				C6B6553B297D83F700928B59 /* SynodicPeriod.swift */,
 				C6428B6B297B847F009DB88D /* ContentView.swift */,
 				C6428B6D297B8481009DB88D /* Assets.xcassets */,
 				C6428B72297B8481009DB88D /* Kepler.entitlements */,
@@ -67,6 +77,16 @@
 				C6428B70297B8481009DB88D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C6B65532297D81E700928B59 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				C6B65535297D823100928B59 /* ParticlesView.swift */,
+				C6B65534297D823100928B59 /* MetalView.swift */,
+				C6B65533297D823100928B59 /* Shader.metal */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +159,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B65538297D823100928B59 /* MetalView.swift in Sources */,
+				C6B65539297D823100928B59 /* ParticlesView.swift in Sources */,
+				C6B6553C297D83F700928B59 /* SynodicPeriod.swift in Sources */,
+				C6B65537297D823100928B59 /* Shader.metal in Sources */,
 				C6428B6C297B847F009DB88D /* ContentView.swift in Sources */,
 				C6428B6A297B847F009DB88D /* KeplerApp.swift in Sources */,
 			);
