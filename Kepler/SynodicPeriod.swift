@@ -92,6 +92,6 @@ struct SynodicPeriod: View {
     func position(t: CGFloat, a: CGFloat) -> CGPoint {
         let t = time
         let w = pow(a, -1.5)
-        return CGPoint(x: 500 * a * cos(w * t), y: 500 * a * sin(w * t))
+        return CGPoint(x: 500 * a * cos(w * t), y: -500 * a * sin(w * t))
     }
 }
