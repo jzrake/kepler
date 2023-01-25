@@ -40,7 +40,7 @@ struct SynodicPeriod: View {
                         token = nil
                     }
                 }
-                Stepper("Year: \(time / (2 * .pi), specifier: "%.3f")", value: $time, step: 0.004 * (2 * .pi))
+                Stepper("Year: \(time / (2 * .pi), specifier: "%.3f")", value: $time, step: 0.001 * (2 * .pi))
                     .monospacedDigit()
             }.padding()
             GeometryReader { gr in
@@ -48,13 +48,16 @@ struct SynodicPeriod: View {
                     sun()
                     venus()
                     earth()
-                    Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: (position(t: time, a: orbitalRadiusEarth))).stroke()
-                    Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: (position(t: time, a: orbitalRadiusVenus))).stroke()
+                    Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: position(t: time, a: orbitalRadiusEarth)).stroke().foregroundColor(.blue)
+                    Segment(p0: CGPoint(x: 0.0, y: 0.0), p1: position(t: time, a: orbitalRadiusVenus)).stroke().foregroundColor(.white)
+                    Segment(p0: position(t: time, a: orbitalRadiusEarth), p1: position(t: time, a: orbitalRadiusVenus))
+                        .stroke(lineWidth: 2.0)
+                        .foregroundColor(.brown)
                 }
                 .transformEffect(CGAffineTransform(translationX: 0.5 * gr.size.width, y: 0.5 * gr.size.height))
             }
             .onReceive(timer) { x in
-                time += 0.004 * (2 * .pi)
+                time += 0.001 * (2 * .pi)
             }
             HStack {
                 Text("Inner planet semi-major axis: \(orbitalRadiusVenus, specifier: "%.3f")")
@@ -68,27 +71,27 @@ struct SynodicPeriod: View {
     func sun() -> some View {
         return Circle()
             .fill(.orange)
-            .frame(width: 50, height: 50)
+            .frame(width: 80, height: 80)
             .position(x: 0.0, y: 0.0)
     }
 
     func venus() -> some View {
         return Circle()
             .fill(.white)
-            .frame(width: 8, height: 8)
+            .frame(width: 16, height: 16)
             .position(position(t: time, a: orbitalRadiusVenus))
     }
 
     func earth() -> some View {
         return Circle()
             .fill(.blue)
-            .frame(width: 10, height: 10)
+            .frame(width: 24, height: 24)
             .position(position(t: time, a: orbitalRadiusEarth))
     }
 
     func position(t: CGFloat, a: CGFloat) -> CGPoint {
         let t = time
         let w = pow(a, -1.5)
-        return CGPoint(x: 300 * a * cos(w * t), y: 300 * a * sin(w * t))
+        return CGPoint(x: 500 * a * cos(w * t), y: 500 * a * sin(w * t))
     }
 }

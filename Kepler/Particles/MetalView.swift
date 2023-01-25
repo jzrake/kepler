@@ -122,7 +122,7 @@ struct MetalView: View {
                 .onAppear {
                     renderer = Renderer(metalView: metalView)
                 }
-            Stepper("Particle count: \(count)", value: $count, in: 5_000...55_000, step: 10_000)
+            Stepper("Particle count: \(count)", value: $count, in: 5_000...55_000, step: 5_000)
                 .onChange(of: count) { newValue in
                     renderer?.particleCount = newValue
                     renderer?.initializeBuffers()
